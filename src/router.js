@@ -1,9 +1,10 @@
 const Router = require('koa-router');
-const controllerFactory = require('./controllers/sigin');
 
-const router = new Router();
-const controller = controllerFactory();
+const routerFactory = ({ signInController }) => {
+  const router = new Router();
+  router.post('/users', signInController.createUser);
 
-router.post('/users', controller.createUser);
+  return router;
+};
 
-module.exports = router;
+module.exports = routerFactory;

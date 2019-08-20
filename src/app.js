@@ -3,13 +3,22 @@ const Koa = require('koa');
 const logger = require('koa-logger');
 const bodyParser = require('koa-bodyparser');
 const { createLogger } = require('./utils/logger');
-const router = require('./router');
+const Container = require('./utils/container');
+const controllers = require('./controllers');
+const routerFactory = require('./router');
 
 const PORT = process.env.PORT || 3000;
+
+const container = Container();
+
+container.register(controllers);
+container.register('router', routerFactory);
 const app = new Koa();
 
 app.use(logger());
 app.use(bodyParser({ jsonLimit: '10mb' }));
+
+const { router } = container.draw;
 
 app
   .use(router.routes())
