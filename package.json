@@ -1,0 +1,22 @@
+{
+  "name": "mclovin",
+  "version": "0.0.1",
+  "description": "Magic Next authentication service",
+  "main": "src/app.js",
+  "scripts": {},
+  "keywords": [
+    "authentication",
+    "magic-next",
+    "nodejs",
+    "jwt"
+  ],
+  "author": "zerodois <me@zerodois.dev>",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.8.1",
+    "koa-router": "^7.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
