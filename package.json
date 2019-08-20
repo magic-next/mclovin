@@ -18,6 +18,7 @@
   "author": "zerodois <me@zerodois.dev>",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "dotenv": "^8.1.0",
     "firebase-admin": "^8.3.0",
     "koa": "^2.8.1",
