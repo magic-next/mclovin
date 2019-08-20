@@ -12,12 +12,18 @@ const Container = () => {
 
   /**
    * Register a factory into container
-   * @param {string} name Name of depency
-   * @param {function} factory Factory of dependency
+   * @param {string|object} receiver Name of depency OR object of {name: function}
+   * @param {function} [factory] Factory of dependency
    */
-  const register = (name, factory) => Object.assign(modules, {
-    [name]: factory,
-  });
+  const register = (receiver, factory = null) => {
+    if (factory) {
+      Object.assign(modules, {
+        [receiver.toString()]: factory,
+      });
+      return;
+    }
+    Object.entries(receiver).forEach((items) => register(...items));
+  };
 
   /**
    * Resolve the depency

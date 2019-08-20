@@ -15,7 +15,7 @@ describe('Container Tests', () => {
     expect(container.resolve('dep2')).toBe(2);
   });
 
-  it('Constante register', () => {
+  it('Constant register', () => {
     const container = Container();
     container.register('dep', 1);
     container.register('sum', ({ dep }) => dep + 2);
@@ -26,5 +26,18 @@ describe('Container Tests', () => {
     const container = Container();
     container.register('dep', () => 1);
     expect(container.draw.dep).toBe(1);
+  });
+
+  it('Register from object', () => {
+    const deps = {
+      a: 1,
+      b: ({ c }) => c + 1,
+      c: ({ a }) => a + 7,
+    };
+    const container = Container();
+    container.register(deps);
+    expect(container.draw.a).toBe(1);
+    expect(container.draw.b).toBe(9);
+    expect(container.draw.c).toBe(8);
   });
 });
