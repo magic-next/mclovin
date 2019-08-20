@@ -1,6 +1,4 @@
-const factory = ({ User, utils }) => {
-  const { to } = utils;
-
+const factory = ({ User, utils, config }) => {
   /**
    * Create a user
    * @param {object} doc Document to insert
@@ -10,7 +8,7 @@ const factory = ({ User, utils }) => {
     if (user) {
       throw new Error('User already exists!');
     }
-    return User.insert(doc);
+    return User.insert({ ...doc, verified: false });
   };
 
   /**
@@ -20,17 +18,7 @@ const factory = ({ User, utils }) => {
    * @param {string} credentials.password
    * @return {Promise}
    */
-  const authenticate = async ({ email, password }) => {
-    const [err, user] = await to(User.findOne({ email }));
-    if (err || !user) {
-      throw new Error('User not exists!');
-    }
-    const [e, verify] = await to(utils.verifyHash(password, user.password));
-    if (e || !verify) {
-      throw new Error('Password not match');
-    }
-    return user;
-  };
+  const authenticate = (user) => utils.sign(user, config.privateKey);
 
   return Object.freeze({ create, authenticate });
 };

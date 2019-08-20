@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 /**
  * Promise wrapper to elegant async/await use
@@ -42,7 +43,15 @@ exports.hash = hash;
 const verifyHash = (data, encrypted) => bcrypt.compare(data, encrypted);
 exports.verifyHash = verifyHash;
 
+/**
+ * @param {object} data Data to be signed
+ * @param {string} key
+ */
+const sign = (data, key) => jwt.sign(data, key);
+exports.sign = sign;
+
 module.exports = {
+  sign,
   to,
   createError,
   hash,
