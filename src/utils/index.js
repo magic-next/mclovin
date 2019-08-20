@@ -21,3 +21,8 @@ const createError = ({ message, status = 400 }) => {
   return err;
 };
 exports.createError = createError;
+
+module.exports = {
+  to,
+  createError,
+};
