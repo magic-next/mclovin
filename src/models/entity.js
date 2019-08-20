@@ -15,7 +15,12 @@ const reducer = (skell, raw) => Object.entries(skell)
  */
 const Entity = ({ db, collection, schema }) => {
   const coll = db.collection(collection);
-  const formatter = (doc) => ({ id: doc.id, ...doc.data() });
+  const formatter = (doc) => {
+    if (!doc) {
+      return doc;
+    }
+    return { id: doc.id, ...doc.data() };
+  };
 
   /**
    * Insert the entity instance
