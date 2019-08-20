@@ -27,8 +27,20 @@ const Entity = ({ db, collection, schema }) => {
       .then((ref) => ({ id: ref.id, ...toInsert }));
   };
 
+  /**
+   * Find one document by filters
+   * @param {object} filter Filter to search
+   * @returns {Promise}
+   */
+  const findOne = (filter) => {
+    const ref = Object.entries(filter)
+      .reduce((prev, [key, val]) => prev.where(key, '==', val), coll);
+    return ref.limit(1).get();
+  };
+
   return Object.freeze({
     insert,
+    findOne,
   });
 };
 

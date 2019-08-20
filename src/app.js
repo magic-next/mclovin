@@ -5,16 +5,22 @@ const bodyParser = require('koa-bodyparser');
 const { createLogger } = require('./utils/logger');
 const Container = require('./utils/container');
 const controllers = require('./controllers');
+const services = require('./services');
+const models = require('./models');
 const routerFactory = require('./router');
 const db = require('./db');
+const config = require('./config');
 
 const PORT = process.env.PORT || 3000;
 
 const container = Container();
 
 container.register(controllers);
+container.register(models);
+container.register(services);
 container.register('router', routerFactory);
 container.register('db', db);
+container.register('config', config);
 const app = new Koa();
 
 app.use(logger());
