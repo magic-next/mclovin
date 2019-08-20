@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 /**
  * Promise wrapper to elegant async/await use
  * @param {Promise} promise Promise to be wrapped
@@ -22,7 +24,27 @@ const createError = ({ message, status = 400 }) => {
 };
 exports.createError = createError;
 
+/**
+ * Bcrypt
+ * @param {string} data Data to be encrypted
+ * @param {string} salt Salt
+ * @returns {Promise}
+ */
+const hash = (data, salt) => bcrypt.hash(data, salt);
+exports.hash = hash;
+
+/**
+ * Verify if data matches with encrypted text
+ * @param {string} data Data to be verified
+ * @param {string} encrypted Encrypted text
+ * @returns {Promise}
+ */
+const verifyHash = (data, encrypted) => bcrypt.compare(data, encrypted);
+exports.verifyHash = verifyHash;
+
 module.exports = {
   to,
   createError,
+  hash,
+  verifyHash,
 };

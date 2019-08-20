@@ -1,4 +1,3 @@
-const bcrypt = require('bcrypt');
 const Entity = require('./entity');
 
 const schema = {
@@ -6,7 +5,7 @@ const schema = {
   password: String,
 };
 
-const factory = ({ db, config }) => {
+const factory = ({ db, config, utils }) => {
   const User = Entity({ db, schema, collection: 'users' });
 
   const mapper = ({ id, email }) => ({
@@ -15,7 +14,7 @@ const factory = ({ db, config }) => {
   });
 
   const insert = async (doc) => {
-    const password = await bcrypt.hash(doc.password, config.salt);
+    const password = await utils.hash(doc.password, config.salt);
     return User.insert({ ...doc, password })
       .then(mapper);
   };
