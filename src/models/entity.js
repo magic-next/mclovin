@@ -15,6 +15,7 @@ const reducer = (skell, raw) => Object.entries(skell)
  */
 const Entity = ({ db, collection, schema }) => {
   const coll = db.collection(collection);
+  const formatter = (doc) => ({ id: doc.id, ...doc.data() });
 
   /**
    * Insert the entity instance
@@ -38,7 +39,7 @@ const Entity = ({ db, collection, schema }) => {
     return ref
       .limit(1)
       .get()
-      .then((snap) => snap.docs[0]);
+      .then((snap) => formatter(snap.docs[0]));
   };
 
   return Object.freeze({
