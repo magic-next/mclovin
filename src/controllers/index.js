@@ -1,5 +1,5 @@
-const signInController = require('./sigin');
+const signUpController = require('./sigup');
 
 module.exports = Object.freeze({
-  signInController,
+  signUpController,
 });

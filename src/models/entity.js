@@ -32,10 +32,13 @@ const Entity = ({ db, collection, schema }) => {
    * @param {object} filter Filter to search
    * @returns {Promise}
    */
-  const findOne = (filter) => {
+  const findOne = async (filter) => {
     const ref = Object.entries(filter)
       .reduce((prev, [key, val]) => prev.where(key, '==', val), coll);
-    return ref.limit(1).get();
+    return ref
+      .limit(1)
+      .get()
+      .then((snap) => snap.docs[0]);
   };
 
   return Object.freeze({

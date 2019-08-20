@@ -4,7 +4,7 @@ const factory = ({ User }) => {
     if (user) {
       throw new Error('User already exists!');
     }
-    return user;
+    return User.insert(doc);
   };
 
   return Object.freeze({ create });
