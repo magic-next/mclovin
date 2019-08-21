@@ -50,10 +50,19 @@ exports.verifyHash = verifyHash;
 const sign = (data, key) => jwt.sign(data, key);
 exports.sign = sign;
 
+/**
+ * @param {string} token Data to be signed
+ * @param {string} key
+ * @returns {Promise}
+ */
+const verify = (token, key) => jwt.verify(token, key);
+exports.verify = verify;
+
 module.exports = {
   sign,
   to,
   createError,
   hash,
+  verify,
   verifyHash,
 };

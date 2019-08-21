@@ -20,7 +20,15 @@ const factory = ({ User, utils, config }) => {
    */
   const authenticate = (user) => utils.sign(user, config.privateKey);
 
-  return Object.freeze({ create, authenticate });
+  /**
+   * Confirm user email
+   * @param {object} config Configuration
+   * @param {string} config.email User email to confirm address
+   * @returns {Promise}
+   */
+  const confirm = ({ email }) => User.update({ email }, { verified: true });
+
+  return Object.freeze({ create, authenticate, confirm });
 };
 
 module.exports = factory;

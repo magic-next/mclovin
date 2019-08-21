@@ -5,6 +5,7 @@ const factory = () => {
     try {
       await next();
     } catch (error) {
+      console.error(error);
       ctx.status = error.status || httpStatus.INTERNAL_SERVER_ERROR;
       ctx.body = {
         error: true,

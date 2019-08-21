@@ -36,19 +36,40 @@ const Entity = ({ db, collection, schema }) => {
   /**
    * Find one document by filters
    * @param {object} filter Filter to search
+   * @param {Boolean} [safe] Remove sensive data when safe is true
    * @returns {Promise}
    */
-  const findOne = async (filter) => {
+  const findOne = async (filter, safe = true) => {
     const ref = Object.entries(filter)
       .reduce((prev, [key, val]) => prev.where(key, '==', val), coll);
-    return ref
+    const snap = await ref
       .limit(1)
-      .get()
-      .then((snap) => formatter(snap.docs[0]));
+      .get();
+    if (!safe) {
+      return snap;
+    }
+    return formatter(snap.docs[0]);
+  };
+
+  /**
+   * Update a document by filter
+   * @param {object} filter Filter to get document to updates
+   * @param {object} data Data to be updated
+   * @returns {Promise}
+   */
+  const update = async (filter, data) => {
+    const document = await findOne(filter);
+    if (!document) {
+      return null;
+    }
+    const ref = coll.doc(document.id);
+    await ref.update(data);
+    return { ...document, ...data };
   };
 
   return Object.freeze({
     insert,
+    update,
     findOne,
   });
 };
