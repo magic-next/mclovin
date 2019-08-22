@@ -3,6 +3,7 @@ const Entity = require('./entity');
 const schema = {
   email: String,
   password: String,
+  verified: Boolean,
 };
 
 const factory = ({ db, config, utils }) => {

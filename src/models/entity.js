@@ -1,6 +1,6 @@
 const reducer = (skell, raw) => Object.entries(skell)
   .reduce((prev, [key]) => {
-    if (raw[key]) {
+    if (key in raw) {
       Object.assign(prev, { [key]: raw[key] });
     }
     return prev;

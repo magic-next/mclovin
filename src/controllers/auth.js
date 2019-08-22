@@ -18,10 +18,7 @@ const factory = ({ config, utils, usersService }) => {
     }
   };
 
-  const sendConfirm = (ctx) => {
-    const { email } = ctx.params;
-    ctx.body = { token: sign({ confirmationId: email }, config.privateKey) };
-  };
+  const sendConfirm = () => null;
 
   return Object.freeze({
     confirm,
