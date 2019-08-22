@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "alias": "magic-mclovin",
+  "builds": [
+    {
+      "src": "/src/app.js",
+      "use": "@now/node"
+    }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/src/app.js" }
+  ],
+  "build": {
+    "env": {
+      "BASE_URL": "https://magic-mclovin.now.sh",
+      "FIREBASE_ADMIN": "",
+      "SALT": "",
+      "PRIVATE_KEY": "",
+      "ICQ_URL": "https://magic-icq.now.sh",
+      "ICQ_KEY": ""
+    }
+  },
+  "env": {
+  }
+}
