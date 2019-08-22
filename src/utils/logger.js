@@ -3,7 +3,7 @@
  * @param {object} config
  * @param {boolean} config.isDev
  */
-const createLogger = ({ isDev = false }) => {
+const createLogger = ({ isDev = false } = {}) => {
   if (!isDev) {
     // TODO: Logger in prod
     const logger = { ...console };
