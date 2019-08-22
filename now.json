@@ -13,13 +13,19 @@
   "build": {
     "env": {
       "BASE_URL": "https://magic-mclovin.now.sh",
-      "FIREBASE_ADMIN": "",
-      "SALT": "",
-      "PRIVATE_KEY": "",
+      "FIREBASE_ADMIN": "@firebase-admin",
+      "SALT": "@salt",
+      "PRIVATE_KEY": "@access-key",
       "ICQ_URL": "https://magic-icq.now.sh",
-      "ICQ_KEY": ""
+      "ICQ_KEY": "@icq-token"
     }
   },
   "env": {
+    "BASE_URL": "https://magic-mclovin.now.sh",
+    "FIREBASE_ADMIN": "@firebase-admin",
+    "SALT": "@salt",
+    "PRIVATE_KEY": "@access-key",
+    "ICQ_URL": "https://magic-icq.now.sh",
+    "ICQ_KEY": "@icq-token"
   }
 }
