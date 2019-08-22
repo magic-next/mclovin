@@ -10,18 +10,16 @@ const factory = ({
 
   const createUser = async (ctx) => {
     const { body } = ctx.request;
-    // const [err, doc] = await to(usersService.create(body));
-    // if (err) {
-    //   throw createError({
-    //     message: err.message,
-    //     status: httpStatus.CONFLICT,
-    //   });
-    // }
-    const token = sign({ confirmationId: body.email }, config.privateKey);
-    // Surround notification (user resend email requests)
-    notificationsService.notifyCreate({ email: body.email, token })
-      .catch(console.error);
-    ctx.body = { user: body };
+    const [err, doc] = await to(usersService.create(body));
+    if (err) {
+      throw createError({
+        message: err.message,
+        status: httpStatus.CONFLICT,
+      });
+    }
+    const token = sign({ confirmationId: doc.email }, config.privateKey);
+    await notificationsService.notifyCreate({ email: doc.email, token });
+    ctx.body = { user: doc };
   };
 
   return Object.freeze({
