@@ -2,6 +2,7 @@ require('dotenv').config();
 const Koa = require('koa');
 const logger = require('koa-logger');
 const bodyParser = require('koa-bodyparser');
+const fetch = require('node-fetch');
 
 const { createLogger } = require('./utils/logger');
 const Container = require('./utils/container');
@@ -26,6 +27,8 @@ container.register('router', routerFactory);
 container.register('db', db);
 container.register('config', config);
 container.register('utils', utils);
+container.register('fetch', fetch, Container.types.CONSTANT);
+
 const app = new Koa();
 
 app.use(logger());
