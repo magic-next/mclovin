@@ -38,6 +38,10 @@ app.use(bodyParser({ jsonLimit: '10mb' }));
 const { router } = container.draw;
 
 app
+  .use((ctx, next) => {
+    ctx.logger = createLogger();
+    return next();
+  })
   .use(authMiddleware(container.draw))
   .use(errorMiddleware())
   .use(router.routes())

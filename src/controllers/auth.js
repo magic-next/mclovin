@@ -13,7 +13,7 @@ const factory = ({ config, utils, usersService }) => {
       const user = await usersService.confirm({ email: data.confirmationId });
       ctx.body = user;
     } catch (error) {
-      console.log('Error', error);
+      ctx.error('Error', error);
       throw utils.createError({ message: 'Unathorized', status: httpStatus.UNAUTHORIZED });
     }
   };
