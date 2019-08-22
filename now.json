@@ -17,7 +17,8 @@
       "SALT": "@salt",
       "PRIVATE_KEY": "@access-key",
       "ICQ_URL": "https://magic-icq.now.sh",
-      "ICQ_KEY": "@icq-token"
+      "ICQ_KEY": "@icq-token",
+      "APPLICATION_KEY": "@mclovin-key"
     }
   },
   "env": {
@@ -26,6 +27,7 @@
     "SALT": "@salt",
     "PRIVATE_KEY": "@access-key",
     "ICQ_URL": "https://magic-icq.now.sh",
-    "ICQ_KEY": "@icq-token"
+    "ICQ_KEY": "@icq-token",
+    "APPLICATION_KEY": "@mclovin-key"
   }
 }
