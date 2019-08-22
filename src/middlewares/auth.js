@@ -4,6 +4,7 @@ const factory = ({ utils, config }) => {
   const middleware = async (ctx, next) => {
     const { authorization = '' } = ctx.headers;
     const token = authorization.replace(/^Bearer\s/i, '');
+    console.log({token, key: config.applicationKey})
     const data = utils.verify(token, config.applicationKey);
     if (!data.access) {
       throw utils.createError({ message: 'Unathorized', status: httpStatus.UNAUTHORIZED });

@@ -10,6 +10,7 @@ const controllers = require('./controllers');
 const services = require('./services');
 const models = require('./models');
 const routerFactory = require('./router');
+const authMiddleware = require('./middlewares/auth');
 const errorMiddleware = require('./middlewares/error');
 
 const db = require('./db');
@@ -37,6 +38,7 @@ app.use(bodyParser({ jsonLimit: '10mb' }));
 const { router } = container.draw;
 
 app
+  .use(authMiddleware(container.draw))
   .use(errorMiddleware())
   .use(router.routes())
   .use(router.allowedMethods());
