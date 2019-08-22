@@ -1,6 +1,5 @@
 const Container = require('./container');
 
-
 describe('Container Tests', () => {
   it('Register test', () => {
     const container = Container();
@@ -26,6 +25,13 @@ describe('Container Tests', () => {
     const container = Container();
     container.register('dep', () => 1);
     expect(container.draw.dep).toBe(1);
+  });
+
+  it('Function as constant', () => {
+    const container = Container();
+    container.register('dep', () => 1, Container.types.CONSTANT);
+    expect(container.draw.dep).toBeInstanceOf(Function);
+    expect(container.draw.dep()).toBe(1);
   });
 
   it('Register from object', () => {

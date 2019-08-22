@@ -1,13 +1,12 @@
 const Container = () => {
   const modules = {};
-  const constantMap = {};
   const draw = new Proxy(modules, {
     get: (target, prop) => {
       const val = target[prop] || null;
-      if (val instanceof Function && !constantMap[prop]) {
-        return val(draw);
+      if (!val) {
+        return null;
       }
-      return val;
+      return val(draw);
     },
   });
 
@@ -20,8 +19,7 @@ const Container = () => {
   const register = (receiver, factory = null, type = Container.types.FACTORY) => {
     if (factory) {
       const key = receiver.toString();
-      constantMap[key] = type === Container.types.CONSTANT;
-      modules[key] = factory;
+      modules[key] = type(factory);
       return;
     }
     Object.entries(receiver).forEach((items) => register(...items));
@@ -40,9 +38,17 @@ const Container = () => {
   });
 };
 
+const CONSTANT = (target) => () => target;
+const FACTORY = (target) => {
+  if (!(target instanceof Function)) {
+    return CONSTANT(target);
+  }
+  return (draw) => target(draw);
+};
+
 Container.types = {
-  FACTORY: Symbol('factory'),
-  CONSTANT: Symbol('constant'),
+  FACTORY,
+  CONSTANT,
 };
 
 module.exports = Container;
