@@ -26,7 +26,8 @@
     "koa": "^2.8.1",
     "koa-bodyparser": "^4.2.1",
     "koa-logger": "^3.2.1",
-    "koa-router": "^7.4.0"
+    "koa-router": "^7.4.0",
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",
