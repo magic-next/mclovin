@@ -1,7 +1,7 @@
 const httpStatus = require('http-status');
 
 const factory = ({ config, utils, usersService }) => {
-  const { verify, sign } = utils;
+  const { verify } = utils;
 
   const confirm = async (ctx) => {
     const { token } = ctx.params;
