@@ -3,9 +3,9 @@ const Koa = require('koa');
 const logger = require('koa-logger');
 const bodyParser = require('koa-bodyparser');
 const fetch = require('node-fetch');
+const Container = require('folkjs');
 
 const { createLogger } = require('./utils/logger');
-const Container = require('./utils/container');
 const controllers = require('./controllers');
 const services = require('./services');
 const models = require('./models');

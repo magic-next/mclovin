@@ -1989,6 +1989,11 @@ flatted@^2.0.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-2.0.1.tgz#69e57caa8f0eacbc281d2e2cb458d46fdb449e08"
   integrity sha512-a1hQMktqW9Nmqr5aktAux3JMNqaucxGcjtjWnZLHX7yyPCmlSV3M54nGYbqT8K+0GhF3NBgmJCc3ma+WOgX8Jg==
 
+folkjs@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/folkjs/-/folkjs-1.0.0.tgz#f883215b5c12475b502cf6c10c098190b74d2b81"
+  integrity sha512-ikq02DIngoqHR/pCFgeNDlkDmIXX3Ag6kk/AZk0nNPsX/JHcB3WAHCjcxAe9TPaBoQVsCzgxVTYx6Gybb8n8Fg==
+
 for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
