@@ -21,7 +21,7 @@
   "author": "zerodois <me@zerodois.dev>",
   "license": "MIT",
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "dotenv": "^8.1.0",
     "firebase-admin": "^8.3.0",
     "folkjs": "^1.0.0",
